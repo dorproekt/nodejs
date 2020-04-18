@@ -1,17 +1,21 @@
-document.querySelectorAll('.price').forEach(node => {
-    node.textContent = new Intl.NumberFormat('ua-UA', {
-        currency: 'uah',
-        style: 'currency'
-    }).format(node.textContent)
-})
+function formatCurrency(){
+    document.querySelectorAll('.price').forEach(node => {
+        node.textContent = new Intl.NumberFormat('ua-UA', {
+            currency: 'uah',
+            style: 'currency'
+        }).format(node.textContent)
+    })
+}
+
+window.addEventListener('load', formatCurrency)
 
 const $card = document.getElementById('card')
 
 if($card){
     $card.addEventListener('click', event => {
+
         if(event.target.classList.contains('js-remove')){
             const id = event.target.dataset.id;
-            
 
             fetch('/card/remove/' + id, {
                 method: 'DELETE'
@@ -24,7 +28,7 @@ if($card){
                                 <td>${c.title}</td>
                                 <td>${c.count}</td>
                                 <td>
-                                    <button class="btn btn-small js-remove" data-id="${id}">Удалить</button>
+                                    <button class="btn btn-small js-remove" data-id="${c.id}">Удалить</button>
                                 </td>
                             </tr>
                         `
@@ -32,6 +36,8 @@ if($card){
 
                     $card.querySelector('tbody').innerHTML = html
                     $card.querySelector('.price').innerHTML = card.price
+
+                    formatCurrency()
                   }else{
                       $card.innerHTML = `<p>Корзина пуста</p>`
                   }
