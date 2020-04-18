@@ -1,0 +1,11 @@
+https://coursehunter.net/course/nodejs-polnoe-rukovodstvo 50
+
+https://materializecss.com/
+
+https://account.mongodb.com/account/login?n=%2Fv2%2F5e92c98903f4c25e50639213
+dorproekt@ukr.net
+
+mongodb user
+admin
+hgU5tFJYmukN2oBu
+mongodb+srv://admin:<password>@cluster0-6nwcy.mongodb.net/test?retryWrites=true&w=majority
