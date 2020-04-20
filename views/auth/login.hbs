@@ -7,8 +7,13 @@
             </ul>
         </div>
         <div id="login" class="col s6 offset-s3">
+
+            {{#if error}}
+                <p class="alert">{{error}}</p>
+            {{/if}}
+
             <h2>Войти в магазин</h2>
-            <form action="/add" method="POST">
+            <form action="/auth/login" method="POST">
                 <div class="input-field">
                     <input name="email" id="email" type="email" class="validate" required>
                     <label for="email">Email</label>
@@ -21,12 +26,17 @@
                     <span class="helper-text" data-error="Введите пароль"></span>
                 </div>
 
+                <input type="hidden" name='_csrf' value="{{csrf}}">
+
                 <button class="btn btn-primary" type="submit">Войти</button>
             </form>
         </div>
         <div id="register" class="col s6 offset-s3">
+            {{#if error}}
+                <p class="alert">{{error}}</p>
+            {{/if}}
             <h2>Регистрация</h2>
-            <form action="/add" method="POST">
+            <form action="/auth/register" method="POST">
                 <div class="input-field">
                     <input name="email" id="remail" type="email" class="validate" required>
                     <label for="remail">Email</label>
@@ -44,6 +54,14 @@
                     <label for="confirm">Пароль еще раз</label>
                     <span class="helper-text" data-error="Пароль еще раз"></span>
                 </div>
+
+                <div class="input-field">
+                    <input name="name" id="name" type="text" class="validate" required>
+                    <label for="name">Ваше имя</label>
+                    <span class="helper-text" data-error="Ваше имя"></span>
+                </div>
+
+                <input type="hidden" name='_csrf' value="{{csrf}}">
 
                 <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
             </form>

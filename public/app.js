@@ -16,9 +16,13 @@ if($card){
 
         if(event.target.classList.contains('js-remove')){
             const id = event.target.dataset.id;
+            const csrf = event.target.dataset.csrf;
 
             fetch('/card/remove/' + id, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'X-XSRF-TOKEN': csrf
+                }
             }).then(res => res.json())
               .then(card => {
                   if(card.courses.length){
