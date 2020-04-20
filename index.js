@@ -8,6 +8,7 @@ const coursesRoutes = require('./routes/courses')
 const addRoutes = require('./routes/add')
 const cardRoutes = require('./routes/card')
 const ordersRoutes = require('./routes/orders')
+const authRoutes = require('./routes/auth')
 const User = require('./models/user')
 
 const hbs = exphbs.create({
@@ -39,6 +40,7 @@ app.use('/courses', coursesRoutes)
 app.use('/add', addRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
+app.use('/auth', authRoutes)
 
 const PORT = process.env.PORT || 4000
 const PASS = `hgU5tFJYmukN2oBu`
