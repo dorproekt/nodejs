@@ -26,8 +26,9 @@ const userSchema = new Schema({
                 }
             }
         ]
-    }
-
+    },
+    resetTokken: String,
+    resetTokkenExp: Date,
 })
 
 userSchema.methods.addToCart = function(course){

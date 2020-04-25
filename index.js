@@ -13,9 +13,7 @@ const addRoutes = require('./routes/add')
 const cardRoutes = require('./routes/card')
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
-
-const PASS = `hgU5tFJYmukN2oBu`
-const urlMongoDB = `mongodb+srv://admin:${PASS}@cluster0-6nwcy.mongodb.net/shop`
+const keys = require('./keys')
 
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
@@ -27,7 +25,7 @@ const hbs = exphbs.create({
 
 const store = new MongoStore({
     collection: 'sessions',
-    uri: urlMongoDB
+    uri: keys.urlMongoDB
 })
 
 app.engine('hbs', hbs.engine)
@@ -40,7 +38,7 @@ app.use(express.urlencoded({
 }))
 
 app.use(session({
-    secret: 'some secret value',
+    secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store
@@ -63,14 +61,14 @@ const PORT = process.env.PORT || 4000
 async function start(){
 
     try{
-        await mongoose.connect(urlMongoDB, {
+        await mongoose.connect(keys.urlMongoDB, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true
         })
 
         app.listen(PORT,() =>{
-            console.log(`Server is running ${PORT}`) 
+            console.log(`Server is running http://localhost:${PORT}/`) 
         })
     }catch(e){
         console.log(e)
